@@ -163,9 +163,7 @@ void image_repair(Mat &src, Mat &rst)
 	Mat R = Mat::eye(3, 3, CV_32F);
 	Mat mapx = Mat(image_size, CV_32FC1);
 	Mat mapy = Mat(image_size, CV_32FC1);
-	cout << "init already\n";
 	initUndistortRectifyMap(cameraMatrix, distCoeffs, R, cameraMatrix, image_size, CV_32FC1, mapx, mapy);
-	cout << "before remap\n";
 	rst = src.clone();
 	remap(src, rst, mapx, mapy, INTER_LINEAR);
 
@@ -179,9 +177,7 @@ int main(int argc, char **argv)
 	CamCalibration c;
 	Mat img = imread("/home/wade/catkin_ws/src/calibration/src/3.jpg");
 	Mat rst;
-	cout << "read already!\n";
 	image_repair(img, rst);
-	cout << "repaired already\n";
 	imshow("init", img);
 	imshow("repair", rst);
 	waitKey(0);
